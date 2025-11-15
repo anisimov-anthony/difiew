@@ -1,0 +1,29 @@
+[package]
+name = "difiew"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+libp2p = { version = "0.56.0", features = ["full"] }
+tokio = { version = "1.47.1", features = ["full"] }
+futures = "0.3"
+bincode = "2.0.1"
+sha2 = "0.10.9"
+digest = "0.10.7"
+clap = { version = "4.5.49", features = ["derive"] }
+monotree = "0.4.0"
+regex = "1.12.2"
+async-trait = "0.1.89"
+
+[lib]
+name = "difiew"
+path = "src/lib.rs"
+
+[[bin]]
+name = "node"
+path = "src/bin/main_node.rs"
+
+[[bin]]
+name = "manager"
+path = "src/bin/main_manager.rs"
+
