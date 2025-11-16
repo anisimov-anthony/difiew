@@ -1,0 +1,29 @@
+x-node-common: &node-common
+  build: .
+  image: difiew-cluster-ubuntu
+  environment:
+    - BIN=node
+services:
+  manager:
+    build: .
+    image: difiew-cluster-ubuntu
+    environment:
+      - BIN=manager
+      - ARGS=--tcp-listen /ip4/0.0.0.0/tcp/3000
+    stdin_open: true
+    tty: true
+  node1:
+    !!merge <<: *node-common
+    environment:
+      - ID=1
+      - ARGS=--tcp-listen /ip4/0.0.0.0/tcp/3001
+  node2:
+    !!merge <<: *node-common
+    environment:
+      - ID=2
+      - ARGS=--tcp-listen /ip4/0.0.0.0/tcp/3002
+  node3:
+    !!merge <<: *node-common
+    environment:
+      - ID=3
+      - ARGS=--tcp-listen /ip4/0.0.0.0/tcp/3003
